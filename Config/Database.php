@@ -1,13 +1,13 @@
 <?php 
+require_once "./.env";
 class Database{
-    protected $host = 'localhost';
-    protected $dbname = 'user_db';
-    protected $user = 'root';
-    protected $password = '';
-
     public function openDbConnection()
     {
-        $link = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->password);
+        $host = getenv('HOST');
+        $user = getenv('DATA_BASE_USER');
+        $password = getenv('DATA_BASE_PASSWORD');
+        $dbname = getenv("DATA_BASE_NAME");
+        $link = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
         return $link;
     }
 
